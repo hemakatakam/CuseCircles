@@ -1,10 +1,16 @@
 {% extends 'circles/base.html' %}
 
 {% block content %}
-    <h1>Create a New Learning Circle</h1>
-    <form method="post">
+    <h1 class="mb-4">Create a New Learning Circle</h1>
+    <form method="post" class="mb-4">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create Circle</button>
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field.errors }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Create Circle</button>
     </form>
 {% endblock %}
