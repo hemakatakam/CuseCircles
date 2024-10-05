@@ -30,6 +30,13 @@ def join_circle(request, circle_id):
     circle.members.add(request.user)
     return redirect('home')
 
+# leave circle
+@login_required
+def leave_circle(request, circle_id):
+    circle = Circle.objects.get(id=circle_id)
+    circle.members.remove(request.user)
+    return redirect('home')
+
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView

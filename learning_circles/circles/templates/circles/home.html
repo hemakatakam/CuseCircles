@@ -12,6 +12,9 @@
                     {% if user.is_authenticated and user not in circle.members.all %}
                         <a href="{% url 'join_circle' circle.id %}" class="btn btn-join">Join Circle</a>
                     {% endif %}
+                    {% if user.is_authenticated and user in circle.members.all %}
+                        <a href="{% url 'leave_circle' circle.id %}" class="btn btn-leave">Leave Circle</a>
+                    {% endif %}
                 </div>
             </div>
         {% empty %}
