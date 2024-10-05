@@ -1,0 +1,15 @@
+{% extends 'circles/base.html' %}
+
+{% block content %}
+    <h1>Learning Circles</h1>
+    {% for circle in circles %}
+        <div>
+            <h2>{{ circle.name }}</h2>
+            <p>{{ circle.description }}</p>
+            <p>Category: {{ circle.category }}</p>
+            {% if user.is_authenticated and user not in circle.members.all %}
+                <a href="{% url 'join_circle' circle.id %}">Join Circle</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
